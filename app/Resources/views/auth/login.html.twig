@@ -1,0 +1,18 @@
+{# app/Resources/views/auth/login.html.twig #}
+<html>
+  <body>
+    <h1>Sing in</h1><br>
+    {% if incorrect is defined %}
+        <label>Incorrect email or password!</label><br>
+    {% endif %}
+    <form method="POST" action="">
+        <label>Email</label><br>
+        <input type="text" name="email"><br>
+        <label>Password</label><br>
+        <input type="text" name="password"><br>
+        <input type="submit" value="Sign in"><br>
+    </form>
+    <label>Novice?</label><br>
+    <a href="http://{{ register_link }}" >Create your User account</a>
+  </body>
+</html>
