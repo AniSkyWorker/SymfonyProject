@@ -1,18 +1,24 @@
 {# app/Resources/views/auth/login.html.twig #}
-<html>
-  <body>
-    <h1>Sing in</h1><br>
-    {% if incorrect is defined %}
-        <label>Incorrect email or password!</label><br>
-    {% endif %}
-    <form method="POST" action="">
-        <label>Email</label><br>
-        <input type="text" name="email"><br>
-        <label>Password</label><br>
-        <input type="text" name="password"><br>
-        <input type="submit" value="Sign in"><br>
-    </form>
-    <label>Novice?</label><br>
-    <a href="http://{{ register_link }}" >Create your User account</a>
-  </body>
-</html>
+
+<h1>Sing in</h1><br>
+{% if error %}
+    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+{% endif %}
+
+<form action="{{ path('auth') }}" method="post">
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="_username" value="{{ last_username }}" /><br>
+
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="_password" />
+
+    {#
+        If you want to control the URL the user
+        is redirected to on success (more details below)
+        <input type="hidden" name="_target_path" value="/account" />
+    #}
+
+    <button type="submit">Sign in</button>
+</form>
+<label>Novice?</label><br>
+<a href="http://{{ register_link }}" >Create your User account</a>

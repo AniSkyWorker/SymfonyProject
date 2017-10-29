@@ -1,7 +1,7 @@
+lab:
+    resource: "@LabBundle/Controller"
+    type: annotation
+
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
-
-auth:
-    path:      /auth
-    defaults:  { _controller: AppBundle:AuthController:signInShowAction }

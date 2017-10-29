@@ -1,20 +1,13 @@
 {# app/Resources/views/auth/register.html.twig #}
-<html>
-  <body>
-    <h1>Create Account</h1><br>
-    {% if incorrect is defined %}
-        <label>Email aleady used!</label><br>
-    {% endif %}
-    <form method="POST" action="">
-        <label>Your name or nickname</label><br>
-        <input type="text" name="nickname"><br>
-        <label>Email</label><br>
-        <input type="text" name="email"><br>
-        <label>Password</label><br>
-        <input type="text" name="password"><br>
-        <input type="submit" value="Create account"><br>
-    </form>
-    <label>Already have an account?</label><br>
-    <a href="http://{{ signin_link }}" >Sign in</a>
-  </body>
-</html>
+
+<h1>Create Account</h1><br>
+{{ form_start(form) }}
+    {{ form_row(form.username) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.plainPassword.first) }}
+    {{ form_row(form.plainPassword.second) }}
+
+    <button type="submit">Create account</button>
+{{ form_end(form) }}
+<label>Already have an account?</label><br>
+<a href="http://{{ signInLink }}" >Sign in</a>

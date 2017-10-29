@@ -2,12 +2,16 @@
 
 namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="users")
+ * @UniqueEntity(fields="email", message="Email already taken")
+ * @UniqueEntity(fields="username", message="Username already taken")
  */
-class UserAccount
+class UserAccount implements UserInterface
 {
     /**
      * @var int
@@ -19,22 +23,30 @@ class UserAccount
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=55)
+     * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\NotBlank()
      */
-    private $nickname;
+    private $username;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=55)
+     * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Email()
      */
     private $email;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=55)
+     * @ORM\Column(type="string", length=64)
      */
     private $password;
 
+    /**
+     * @Assert\NotBlank()
+     * @Assert\Length(max=4096)
+     */
+    private $plainPassword;
 
     /**
      * Get id
@@ -47,27 +59,27 @@ class UserAccount
     }
 
     /**
-     * Set nickname
+     * Set username
      *
-     * @param string $nickname
+     * @param string $username
      *
      * @return UserAccount
      */
-    public function setNickname($nickname)
+    public function setUsername($username)
     {
-        $this->nickname = $nickname;
+        $this->username = $username;
 
         return $this;
     }
 
     /**
-     * Get nickname
+     * Get username
      *
      * @return string
      */
-    public function getNickname()
+    public function getUsername()
     {
-        return $this->nickname;
+        return $this->username;
     }
 
     /**
@@ -116,6 +128,68 @@ class UserAccount
     public function getPassword()
     {
         return $this->password;
+    }
+
+    /**
+     * Get password
+     *
+     * @return string
+     */
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * Set password
+     *
+     * @param string $password
+     *
+     * @return UserAccount
+     */
+    public function setPlainPassword($password)
+    {
+        $this->plainPassword = $password;
+    }
+
+    public function getSalt()
+    {
+        // The bcrypt algorithm doesn't require a separate salt.
+        // You *may* need a real salt if you choose a different encoder.
+        return null;
+    }
+
+    public function getRoles()
+    {
+        return array('ROLE_USER');
+    }
+
+    public function eraseCredentials()
+    {
+    }
+
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt,
+        ));
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt
+        ) = unserialize($serialized);
     }
 }
 
