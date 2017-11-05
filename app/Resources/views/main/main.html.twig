@@ -1,7 +1,7 @@
-{# app/Resources/views/base.html.twig #}
+{# app/Resources/views/main/main.html.twig #}
 {{ include('main/header.html.twig') }}
 <div class="row">
 {{ include('main/sidebar.html.twig') }}
-{{ include('main/content.html.twig') }}
+{{ include('main/content.html.twig', { 'guitars': guitar }) }}
 </div>
 {{ include('main/footer.html.twig') }}

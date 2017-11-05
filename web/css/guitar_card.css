@@ -1,0 +1,11 @@
+.thumbnail {
+    width : 20%;
+    height: 30%;
+    overflow: auto;
+}
+
+.thumbnail img{
+    width: 100%;
+    height: auto;
+    display: block;
+}

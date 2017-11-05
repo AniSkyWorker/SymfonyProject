@@ -1,5 +1,11 @@
+{# app/Resources/views/main/content.html.twig #}
 {% block content %}
 <div class="col-sm-9 col-lg-10">
+    <ul>
+    {% for guitar in guitars %}
+        <li>{{ include('guitar/guitar_card.html.twig', { 'guitar': guitar }) }}</li>
+    {% endfor %}
+    </ul>
 </div>
 
 {% endblock %}
