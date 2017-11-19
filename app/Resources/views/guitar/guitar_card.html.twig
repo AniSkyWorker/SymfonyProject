@@ -1,12 +1,12 @@
-{# app/Resources/views/guitar/guitar_card.html.twig #}
-<div class = "thumbnail">
+{{ include('guitar/guitar_view.html.twig', { 'guitar': guitar }) }}
+<div class = "thumbnail" data-toggle="modal" href=#{{ guitar.name }} >
     <img src = {{ asset('images/' ~ guitar.imgPath) }} alt = {{ guitar.name }}>
     <div class = "caption">
         <h3>{{ guitar.name }}</h3>
         <p>{{ guitar.description }}</p>
         
         <p>
-        <a href = "#" class = "btn btn-primary" role = "button">
+        <a  href=# data-toggle="modal" class = "btn btn-primary" role = "button">
             Rate
         </a>
         <a href = "#" class = "btn btn-default" role = "button">
@@ -16,4 +16,3 @@
     
     </div>
 </div>
-
