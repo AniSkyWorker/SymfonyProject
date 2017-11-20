@@ -49,6 +49,33 @@ class UserAccount implements UserInterface
     private $plainPassword;
 
     /**
+     * @ORM\OneToMany(targetEntity="Review", mappedBy="user")
+     */
+    protected $review;
+
+    /**
+     * Get Review
+     *
+     * @return Review
+     */
+    public function getReview()
+    {
+        return $this->review;
+    }
+
+    /**
+     * Set Review
+     *
+     * @param user $review
+     *
+     * @return UserAccount
+     */
+    public function setReview($review)
+    {
+        $this->review = $review;
+    }
+
+    /**
      * Get id
      *
      * @return int

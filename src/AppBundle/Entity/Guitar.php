@@ -50,6 +50,33 @@ class Guitar
     private $raiting;
 
     /**
+     * @ORM\OneToMany(targetEntity="Review", mappedBy="guitar")
+     */
+    protected $review;
+
+    /**
+     * Get Review
+     *
+     * @return Review
+     */
+    public function getReview()
+    {
+        return $this->review;
+    }
+
+    /**
+     * Set Review
+     *
+     * @param user $review
+     *
+     * @return Guitar
+     */
+    public function setReview($review)
+    {
+        $this->review = $review;
+    }
+
+    /**
      * Get id
      *
      * @return int
