@@ -26,6 +26,11 @@
                             <br>
                             <br>
                             <h4>Reviews:</h4>
+                            <div class="card-content clearfix">
+                                {% for review in guitar.review %}
+                                    {{ include('review/review_card.html.twig', { 'review': review }) }}
+                                {% endfor %}
+                            </div>
                         </div>
                     </div>
                 </div>
