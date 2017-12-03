@@ -13,10 +13,20 @@ class DefaultController extends Controller
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction(Request $request)
+    public function homePage(Request $request)
     {
         return $this->render('main/main.html.twig', [ 
             'guitar' => $this->getDoctrine()->getRepository(Guitar::class)->findAll(),
+            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+        ]);
+    }
+
+        /**
+     * @Route("/account", name="account")
+     */
+    public function acoountPage(Request $request)
+    {
+        return $this->render('account/main.html.twig', [ 
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
     }
