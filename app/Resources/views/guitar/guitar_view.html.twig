@@ -19,6 +19,8 @@
                     <div class="row">
                         <div class="col-md-8">
                              <img class="img-thumbnail" src = {{ asset('images/' ~ guitar.imgPath) }} alt = {{ guitar.name }}>
+                             <input type="hidden" class="rating-tooltip-manual" data-filled="fa fa-star fa-3x" data-empty="fa fa-star-o fa-3x" data-fractions="3"/>
+                             <input type="hidden" class="rating" value={{ guitar.rating }}/>
                         </div>
                         <div class="col-md-4">
                             <h3>{{ guitar.name }}</h3>

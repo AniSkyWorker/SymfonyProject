@@ -47,7 +47,7 @@ class Guitar
     * @var int
     * @ORM\Column(type="integer")
      */
-    private $raiting;
+    private $rating;
 
     /**
      * @ORM\OneToMany(targetEntity="Review", mappedBy="guitar")
