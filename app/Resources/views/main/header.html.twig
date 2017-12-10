@@ -8,9 +8,9 @@
         <link rel="stylesheet" href="{{ asset('css/guitar_card.css') }}" />
         <link rel="stylesheet" href="{{ asset('css/header.css') }}" />
         <link rel="stylesheet" href="{{ asset('bower_components/bootstrap-rating/bootstrap-rating.css') }}" />
-        <script src="bower_components/jquery/dist/jquery.min.js"></script>
-        <script src="bower_components/bootstrap-rating/bootstrap-rating.min.js"></script>
-        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
+        <script src="{{ asset('bower_components/bootstrap-rating/bootstrap-rating.min.js') }}"></script>
+        <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
         <title>Guitar Library</title>
     </head>
     <body>
@@ -21,7 +21,7 @@
                 </div>
                 <ul class="nav navbar-nav navbar-right">
                 {% if app.user != null %}
-                    <li><a href="account"><span class="glyphicon glyphicon-user"></span> {{app.user.username}}</a></li>
+                    <li><a href="{{ path('account') }}"><span class="glyphicon glyphicon-user"></span> {{app.user.username}}</a></li>
                     <li><a href="{{ logout_path('main') }}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                 {% else %}
                     <li><a href="register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>

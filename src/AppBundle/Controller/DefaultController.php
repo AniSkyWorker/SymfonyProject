@@ -20,14 +20,4 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
     }
-
-        /**
-     * @Route("/account", name="account")
-     */
-    public function acoountPage(Request $request)
-    {
-        return $this->render('account/main.html.twig', [ 
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-        ]);
-    }
 }
