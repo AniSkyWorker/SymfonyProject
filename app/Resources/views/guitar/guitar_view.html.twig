@@ -5,9 +5,10 @@
             <button type="button" class="close" data-dismiss="modal">&times;</button>
             <div class="row">
                 <div class="col-md-1">
-                <button type="button" class="btn btn-default btn-sm btn-circle" aria-label="Add Guitar">
+                <button type="button" href="{{ path('add_guitar_route', {'id': guitar.id }) }}" class="btn btn-default btn-sm btn-circle" aria-label="Add Guitar">
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                 </button>
+                <a href="{{ path('add_guitar_route', {'id': guitar.id }) }}">Delete</a>
                 </div>
                 <div class="col-md-11">
                 <h2 class="modal-title">{{ guitar.name }}</h2>

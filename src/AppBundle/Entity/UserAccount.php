@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -52,6 +53,40 @@ class UserAccount implements UserInterface
      * @ORM\OneToMany(targetEntity="Review", mappedBy="user")
      */
     protected $review;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Guitar")
+     * @ORM\JoinTable(name="user_guitars",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="guitar_id", referencedColumnName="id")}
+     *      )
+     */
+    protected $guitars;
+
+
+    public function __construct() {
+        $this->guitars = new ArrayCollection();
+        $this->review = new ArrayCollection();
+    }
+    /**
+     * Get Guitars
+     *
+     * @return Guitars
+     */
+    public function getGuitars()
+    {
+        return $this->guitars;
+    }
+
+    /**
+     * Get Guitars
+     *
+     * @return Guitars
+     */
+    public function setGuitars($guitars)
+    {
+        $this->guitars = $guitars;
+    }
 
     /**
      * Get Review

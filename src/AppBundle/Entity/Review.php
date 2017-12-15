@@ -29,7 +29,7 @@ class Review
     * @ORM\Column(type="integer")
     * @Assert\NotNull()
      */
-    private $raiting;
+    private $rating;
 
     /**
      * @ORM\ManyToOne(targetEntity="Guitar", inversedBy="review")

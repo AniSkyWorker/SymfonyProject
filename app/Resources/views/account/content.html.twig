@@ -1,10 +1,9 @@
 {% block content %}
-<div class="col-sm-9 col-lg-10">
-    <ul>
-    {% for guitar in guitars %}
-        <li>{{ include('guitar/guitar_card.html.twig', { 'guitar': guitar }) }}</li>
-    {% endfor %}
-    </ul>
+<div id="right-block" class="col-md-8">
+    {% if content == 'account' %}
+        {{ include('account/settings.html.twig') }}
+    {% else %}
+        {{ include('account/user_library.html.twig', {'reviews' : user.review , 'guitars' : user.guitars}) }}
+    {% endif %}
 </div>
-<script src="js/rating.js"></script>
 {% endblock %}

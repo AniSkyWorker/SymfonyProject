@@ -1,0 +1,56 @@
+<div class="btn-group">
+  <button id="guitar_list" type="button" class="btn btn-primary">Guitars</button>
+  <button id="review_list" type="button" class="btn btn-primary">Reviews</button>
+</div>
+<table id="reviews" class="table table-hover">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Rating</th>
+      <th>Review</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% set i = 1 %}
+    {% for review in reviews  %}
+    <tr>
+      <th scope="row">{{ i }}</th>
+      <td>
+        <input type="hidden" class="rating-tooltip-manual" data-filled="fa fa-star fa-3x" data-empty="fa fa-star-o fa-3x" data-fractions="3"/>
+        <input type="hidden" class="rating" value={{ review.rating }} data-readonly/>
+      </td>
+      <td>
+        <h4>{{ review.guitar.name }}</h4>
+        {{ review.text }}
+      </td>
+    </tr>
+    {% set i = i + 1 %}
+    {% endfor %}
+  </tbody>
+</table>
+<table id="guitars"class="table table-hover">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Guitar</th>
+      <th>Rating</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% set i = 1 %}
+    {% for guitar in guitars  %}
+    <tr>
+      <th scope="row">{{ i }}</th>
+      <td>
+        <h4>{{ guitar.name }}</h4>
+      </td>
+      <td>
+        <input type="hidden" class="rating-tooltip-manual" data-filled="fa fa-star fa-3x" data-empty="fa fa-star-o fa-3x" data-fractions="3"/>
+        <input type="hidden" class="rating" value={{ guitar.rating }} data-readonly/>
+      </td>
+    </tr>
+    {% set i = i + 1 %}
+    {% endfor %}
+  </tbody>
+</table>
+<script src="{{ asset('js/user_lib.js') }}"></script>

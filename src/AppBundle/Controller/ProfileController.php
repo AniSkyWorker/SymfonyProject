@@ -7,19 +7,22 @@ use AppBundle\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-class AccountController extends Controller
+class ProfileController extends Controller
 {
+    private function getCurrentUser() {
+        $em = $this->getDoctrine()->getManager();
+        $username = $this->getUser()->getUsername();
+        return $em->getRepository(UserAccount::class)->findOneBy(['username' => $username]);
+    }
     /**
      * @Route("/account", name="account")
      */
     public function accountAction(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
         $em = $this->getDoctrine()->getManager();
-        $username = $this->getUser()->getUsername();
-        $currentUser = $em->getRepository(UserAccount::class)->findOneBy(['username' => $username]);
+        $currentUser = $this->getCurrentUser();
 
         if (!$currentUser) {
             throw $this->createNotFoundException(
@@ -45,6 +48,18 @@ class AccountController extends Controller
 
         return $this->render('account/main.html.twig', [ 
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+            'content' => 'account', 'user' => $currentUser,
+        ]);
+    }
+
+     /**
+     * @Route("/user_library", name="library")
+     */
+    public function userLibraryAction(Request $request)
+    {
+        return $this->render('account/main.html.twig', [ 
+            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+            'content' => 'user_library', 'user' => $this->getCurrentUser(),
         ]);
     }
 }

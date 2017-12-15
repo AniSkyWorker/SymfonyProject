@@ -1,6 +1,6 @@
 {{ include('main/header.html.twig') }}
 <div class="row">
     {{ include('account/sidebar.html.twig') }}
-    {{ include('account/settings.html.twig') }}
+    {{ include('account/content.html.twig', { 'user': user }) }}
 </div>
 {{ include('main/footer.html.twig') }}
