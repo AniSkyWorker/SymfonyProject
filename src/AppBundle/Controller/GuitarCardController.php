@@ -27,7 +27,7 @@ class GuitarCardController extends Controller
         $currentUser = $this->getCurrentUser();
 
         if (!$currentUser) {
-            return $this->redirectToRoute('auth');
+            return  new Response($this->generateUrl('auth'));
         }
 
         $guitar = $em->getRepository(Guitar::class)->find($id);
@@ -35,5 +35,20 @@ class GuitarCardController extends Controller
         $em->flush();
 
         return new Response();
+    }
+
+    /**
+    * @Route("/{id}/delete", requirements={"id" = "\d+"}, name="delete_guitar_route")
+    */
+    public function deleteGuitarAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $currentUser = $this->getCurrentUser();
+
+        $guitar = $em->getRepository(Guitar::class)->find($id);
+        $currentUser->getGuitars()->removeElement($guitar);
+        $em->flush();
+
+        return new Response($this->generateUrl('library'));
     }
 }

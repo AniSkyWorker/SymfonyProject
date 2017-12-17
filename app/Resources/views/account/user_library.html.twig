@@ -28,7 +28,7 @@
     {% endfor %}
   </tbody>
 </table>
-<table id="guitars"class="table table-hover">
+<table id="guitars" class="table table-hover">
   <thead>
     <tr>
       <th>#</th>
@@ -47,6 +47,11 @@
       <td>
         <input type="hidden" class="rating-tooltip-manual" data-filled="fa fa-star fa-3x" data-empty="fa fa-star-o fa-3x" data-fractions="3"/>
         <input type="hidden" class="rating" value={{ guitar.rating }} data-readonly/>
+      </td>
+      <td id="btn-td">
+        <button id="delete-guitar-btn" type="button" onclick="deleteGuitar({{ guitar.id }})" class="btn btn-default btn-sm btn-circle" aria-label="Add Guitar">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
       </td>
     </tr>
     {% set i = i + 1 %}

@@ -8,5 +8,5 @@ $('input').rating({
   }
 });
 $('input').on('change', function () {
-  alert('Rating: ' + $(this).val());
+  //$(this).find('#review-form').show(1);
 });

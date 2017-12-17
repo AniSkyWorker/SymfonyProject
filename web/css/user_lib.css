@@ -1,3 +1,7 @@
 #reviews {
-    display : none;
+    display: none;
+}
+
+#delete-guitar-btn {
+    display: none;
 }
