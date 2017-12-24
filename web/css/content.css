@@ -8,7 +8,7 @@ body {
     margin: 0;
     padding: 0;
     width: 100%;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 .my-footer {
@@ -39,4 +39,9 @@ ul {
     font-size: 12px;
     line-height: 1.428571429;
     border-radius: 15px;
+}
+
+.img-circle {
+    width: 50%;
+    height: 50%;
 }

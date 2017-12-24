@@ -1,4 +1,4 @@
-$('input').rating({
+$('#rating-input').rating({
   extendSymbol: function (rate) {
     $(this).tooltip({
       container: 'body',
@@ -7,6 +7,7 @@ $('input').rating({
     });
   }
 });
-$('input').on('change', function () {
-  //$(this).find('#review-form').show(1);
+
+$('#rating-input').on('change', function () {
+  $(this).parent().find('#review-form').show(1);
 });

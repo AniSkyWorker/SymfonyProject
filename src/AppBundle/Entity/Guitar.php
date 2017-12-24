@@ -27,7 +27,7 @@ class Guitar
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=1000)
      */
     private $description;
 

@@ -1,4 +1,4 @@
-<div class="modal fade" id={{ guitar.name }} role="dialog">
+<div class="modal fade" id={{ guitar.id }} role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -18,16 +18,19 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-8">
-                             <img class="img-thumbnail" src = {{ asset('images/' ~ guitar.imgPath) }} alt = {{ guitar.name }}>
-                             <input type="hidden" class="rating-tooltip-manual" data-filled="fa fa-star fa-3x" data-empty="fa fa-star-o fa-3x" data-fractions="3"/>
-                             <input type="hidden" class="rating" value={{ guitar.rating }}/>
-                             {#<div id="review-form">
-                                <label for="review" class="col-lg-3 control-label">Review:</label>
+                             <img class="img-thumbnail" src = '{{ asset('images/') }}{{guitar.imgPath}}' alt = {{ guitar.name }}>
+                             <input id="rating-tooltip" type="hidden" class="rating-tooltip-manual" data-filled="fa fa-star fa-3x" data-empty="fa fa-star-o fa-3x" data-fractions="3"/>
+                             <input id="rating-input" type="hidden" class="rating" value={{ guitar.rating }}/>
+                             <br>
+                             <br>
+                             <div id="review-form">
+                                <label for="review" class="col-lg-2 control-label">Review:</label>
                                 <div class="col-lg-8">
                                     <input name="review" class="form-control" type="text" value="">
+                                    <br>
+                                    <input type="submit" class="btn btn-primary" value="Send Review"/>
                                 </div>
-                                {#<input type="submit" class="btn btn-primary" value="Send Review"/>
-                             </div>#}
+                            </div>
                         </div>
                         <div class="col-md-4">
                             <h3>{{ guitar.name }}</h3>

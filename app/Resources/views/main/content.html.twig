@@ -1,8 +1,16 @@
 {% block content %}
 <div class="col-sm-9 col-lg-10">
     <ul>
+        <div class="row">
+    {% set i = 0 %}
     {% for guitar in guitars %}
-        <li>{{ include('guitar/guitar_card.html.twig', { 'guitar': guitar }) }}</li>
+        {% set isNewRow = ((i % 4) == 0) %}
+        {% if (i % 4) == 0 %}
+        </div>
+        <div class="row">
+        {% endif %}
+            <li>{{ include('guitar/guitar_card.html.twig', { 'guitar': guitar }) }}</li>
+        {% set i = i + 1 %}
     {% endfor %}
     </ul>
 </div>
